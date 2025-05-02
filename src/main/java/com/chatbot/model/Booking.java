@@ -1,85 +1,68 @@
 package com.chatbot.model;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-@Entity(name = "booking")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
+@Entity
 public class Booking {
 
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "date", nullable = false)
-    private LocalDateTime bookingDate;
-
-    @Column(name = "number",nullable = false)
-    private String bookingNumber;
-
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
-    @Column(name = "phoneNumber")
+    private String name;
+    private int age;
+    private String email;
+    private String doctor;
     private String phoneNumber;
 
-    @PrePersist
-    private void ensureBookingNumber(){
-        if (bookingNumber == null){
-            bookingNumber = String.format("S%02d", UUID.randomUUID().hashCode()&Integer.MAX_VALUE);
-        }
+    public Booking() {
+
     }
 
-    public UUID getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public LocalDateTime getBookingDate() {
-        return bookingDate;
+    public String getName() {
+        return name;
     }
 
-    public void setBookingDate(LocalDateTime bookingDate) {
-        this.bookingDate = bookingDate;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getBookingNumber() {
-        return bookingNumber;
+    public int getAge() {
+        return age;
     }
 
-    public void setBookingNumber(String bookingNumber) {
-        this.bookingNumber = bookingNumber;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getDoctor() {
+        return doctor;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
     }
 
     public String getPhoneNumber() {
@@ -89,5 +72,14 @@ public class Booking {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-}
 
+
+    public Booking(Long id, String name, int age, String email, String doctor, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.email = email;
+        this.doctor = doctor;
+        this.phoneNumber = phoneNumber;
+    }
+}

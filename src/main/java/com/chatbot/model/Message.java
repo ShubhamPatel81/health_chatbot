@@ -14,8 +14,8 @@ import java.util.UUID;
 @Entity(name = "message")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class Message {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -26,10 +26,20 @@ public class Message {
     @Column(columnDefinition = "TEXT")
     private String messages;
 
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", memoryId='" + memoryId + '\'' +
+                ", messages='" + messages + '\'' +
+                '}';
+    }
+
     public Message(String memoryId, String messages) {
         this.memoryId = memoryId;
         this.messages = messages;
     }
+
 
     public UUID getId() {
         return id;
@@ -53,5 +63,20 @@ public class Message {
 
     public void setMessages(String messages) {
         this.messages = messages;
+    }
+
+    public Message() {
+    }
+
+    public Message(UUID id, String memoryId, String messages) {
+        this.id = id;
+        this.memoryId = memoryId;
+        this.messages = messages;
+    }
+
+
+
+    public Message(UUID id) {
+        this.id = id;
     }
 }

@@ -1,15 +1,10 @@
 package com.chatbot.repository;
 
 import com.chatbot.model.Booking;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.UUID;
-
-public interface BookingRepository extends CrudRepository<Booking, UUID> {
-    Optional<Booking> findByBookingNumber(String bookingNumber);
-
-    boolean existsByBookingDate(LocalDateTime bookingDate);
-
+@Repository
+public interface BookingRepository extends CrudRepository<Booking, Long> {
 }

@@ -1,5 +1,6 @@
 package com.chatbot.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import static dev.langchain4j.data.message.ChatMessageDeserializer.messagesFromJ
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ChatBotMessage {
 
     private String memoryId;
@@ -31,10 +33,11 @@ public class ChatBotMessage {
         chatMessages.forEach(chatMessage ->
                 chatBotMessages.add(new ChatBotMessage(
                         memoryId,
-                        chatMessage.text(), // ✅ Ensure `text()` method exists
+                        chatMessage.toString(), // ⬅️ updated from .text()
                         chatMessage.type().equals(ChatMessageType.USER)
                 ))
         );
         return chatBotMessages;
     }
+
 }

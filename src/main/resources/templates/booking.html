@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Booking</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Doctor Booking</h2>
+    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Appointment</button>
+
+    <div th:if="${message}" class="alert alert-success mt-3" th:text="${message}"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <form th:action="@{/book}" method="post" th:object="${booking}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Book Appointment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label>Name</label>
+                        <input type="text"
+                               class="form-control"
+                               th:field="*{name}"
+                               required/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Age</label>
+                        <input type="number" class="form-control" th:field="*{age}" required/>
+
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control"  th:field="*{email}" required/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Doctor</label>
+                        <input type="text" class="form-control"  th:field="*{doctor}"  required/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Phone Number</label>
+                        <input type="text" class="form-control"  th:field="*{phoneNumber}" required/>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Book</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

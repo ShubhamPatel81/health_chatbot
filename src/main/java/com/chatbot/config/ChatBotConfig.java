@@ -1,5 +1,7 @@
 package com.chatbot.config;
 
+//import com.chatbot.service.GeminiChatModel;
+import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,4 +19,9 @@ public class ChatBotConfig {
                 .timeout(Duration.ofMinutes(20))
                 .build();
     }
+
+//    @Bean
+//    public ChatLanguageModel chatLanguageModel() {
+//        return new GeminiChatModel();
+//    }
 }
